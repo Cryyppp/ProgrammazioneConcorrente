@@ -1,0 +1,96 @@
+<Window x:Class="ConcurrentProgrammingApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ConcurrentProgrammingApp"
+        mc:Ignorable="d"
+        Title="Programmazione Concorrente — Semafori &amp; Sincronizzazione" 
+        Height="720" Width="1280"
+        WindowStartupLocation="CenterScreen"
+        Background="#0d0f1a"
+        Foreground="#eae8e1">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar -->
+        <StackPanel Grid.Column="0" Background="#121620" BorderThickness="0,0,1,0" BorderBrush="#383d4a">
+            <!-- Logo -->
+            <StackPanel Padding="20,16" BorderThickness="0,0,0,1" BorderBrush="#383d4a">
+                <TextBlock FontFamily="JetBrains Mono, Courier New" FontSize="12" FontWeight="Bold" Foreground="#00ff88">
+                    PROG. CONCORRENTE
+                </TextBlock>
+                <TextBlock FontSize="11" Foreground="#888888" Margin="0,4,0,0">
+                    Semafori &amp; Sincronizzazione
+                </TextBlock>
+            </StackPanel>
+
+            <!-- Navigation -->
+            <TextBlock Text="CAPITOLI" FontFamily="JetBrains Mono, Courier New" FontSize="10" Foreground="#666666" 
+                       Padding="20,12,20,8" FontWeight="Bold" LetterSpacing="1"/>
+            
+            <ListBox x:Name="NavListBox" Background="Transparent" BorderThickness="0" 
+                     Foreground="#eae8e1" SelectionChanged="NavListBox_SelectionChanged">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Padding" Value="0"/>
+                        <Setter Property="Margin" Value="0"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Border x:Name="Bd" Background="{TemplateBinding Background}" 
+                                            Padding="{TemplateBinding Padding}" Margin="8,4">
+                                        <ContentPresenter/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="true">
+                                            <Setter TargetName="Bd" Property="Background" Value="#00ff88"/>
+                                            <Setter TargetName="Bd" Property="BorderThickness" Value="2,0,0,0"/>
+                                            <Setter Property="Foreground" Value="#0d0f1a"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter TargetName="Bd" Property="Background" Value="#00ff8811"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                
+                <TextBlock Text="Introduzione" FontFamily="JetBrains Mono, Courier New" FontSize="12" 
+                           FontWeight="Bold" Padding="12,8"/>
+                <TextBlock Text="Semafori" FontFamily="JetBrains Mono, Courier New" FontSize="12" 
+                           FontWeight="Bold" Padding="12,8"/>
+                <TextBlock Text="Produttore-Consumatore" FontFamily="JetBrains Mono, Courier New" FontSize="12" 
+                           FontWeight="Bold" Padding="12,8"/>
+                <TextBlock Text="Problemi Classici" FontFamily="JetBrains Mono, Courier New" FontSize="12" 
+                           FontWeight="Bold" Padding="12,8"/>
+                <TextBlock Text="Soluzioni" FontFamily="JetBrains Mono, Courier New" FontSize="12" 
+                           FontWeight="Bold" Padding="12,8"/>
+                <TextBlock Text="Rischi &amp; Patologie" FontFamily="JetBrains Mono, Courier New" FontSize="12" 
+                           FontWeight="Bold" Padding="12,8"/>
+            </ListBox>
+
+            <!-- Footer -->
+            <TextBlock Text="$ v1.0.0 — 2025" FontFamily="JetBrains Mono, Courier New" FontSize="10" 
+                       Foreground="#666666" Padding="20,16" VerticalAlignment="Bottom" Margin="0,auto,0,0"/>
+        </StackPanel>
+
+        <!-- Content Area -->
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="ContentPanel" Padding="40,30">
+                <!-- Placeholder content -->
+                <TextBlock Text="Programmazione Concorrente" Style="{StaticResource TitleStyle}" Margin="0,0,0,16"/>
+                <TextBlock Text="Semafori &amp; Sincronizzazione" Style="{StaticResource SubtitleStyle}" Margin="0,0,0,24"/>
+                <TextBlock Text="Seleziona un capitolo dalla sidebar per iniziare." 
+                           Foreground="#999999" FontSize="14" LineHeight="22" TextWrapping="Wrap"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

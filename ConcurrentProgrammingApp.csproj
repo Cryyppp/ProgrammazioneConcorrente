@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>ConcurrentProgrammingApp</AssemblyName>
+    <RootNamespace>ConcurrentProgrammingApp</RootNamespace>
+    <StartupObject>ConcurrentProgrammingApp.App</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Composition" Version="4.7.0" />
+  </ItemGroup>
+
+</Project>
