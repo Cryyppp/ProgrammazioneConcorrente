@@ -1,0 +1,117 @@
+<UserControl x:Class="ConcurrentProgrammingApp.Views.SemaforiView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             Background="#0d0f1a"
+             Foreground="#eae8e1">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical" Spacing="24" Padding="0,0,0,24">
+            <!-- Header -->
+            <StackPanel>
+                <TextBlock Text="CAPITOLO 1" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="11" Foreground="#00ff88" FontWeight="Bold" LetterSpacing="1" Margin="0,0,0,8"/>
+                <TextBlock Text="I Semafori" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="28" FontWeight="Bold" Foreground="#eae8e1"/>
+                <TextBlock Text="Binari, contatori, Dijkstra, mutua esclusione" 
+                           FontSize="13" Foreground="#cccccc" Margin="0,8,0,0"/>
+            </StackPanel>
+
+            <!-- Definition -->
+            <Border Background="#1a1d28" BorderBrush="#00ff88" BorderThickness="0,0,0,3" Padding="16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="DEFINIZIONE" FontFamily="JetBrains Mono, Courier New" 
+                               FontSize="11" FontWeight="Bold" Foreground="#00ff88"/>
+                    <TextBlock Text="Un semaforo è una variabile intera non negativa controllata da operazioni atomiche wait() (P) e signal() (V). È il meccanismo fondamentale per la sincronizzazione nella programmazione concorrente, introdotto da Dijkstra nel 1965." 
+                               FontSize="13" Foreground="#cccccc" LineHeight="20" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Semaphore Types -->
+            <StackPanel Spacing="16">
+                <TextBlock Text="Tipi di Semafori" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="16" FontWeight="Bold" Foreground="#eae8e1"/>
+
+                <!-- Semaforo Binario -->
+                <Border Background="#1a1d28" BorderBrush="#383d4a" BorderThickness="1" CornerRadius="4" Padding="16">
+                    <StackPanel Spacing="12">
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <TextBlock Text="Semaforo Binario (Mutex)" FontFamily="JetBrains Mono, Courier New" 
+                                       FontSize="13" FontWeight="Bold" Foreground="#eae8e1"/>
+                            <Border Background="#00ff8820" Padding="6,2" CornerRadius="2">
+                                <TextBlock Text="mutex" FontFamily="JetBrains Mono, Courier New" 
+                                           FontSize="10" Foreground="#00ff88"/>
+                            </Border>
+                        </StackPanel>
+                        <TextBlock Text="Valori: 0 o 1" FontFamily="JetBrains Mono, Courier New" 
+                                   FontSize="11" Foreground="#00ff88"/>
+                        <TextBlock Text="Può assumere solo i valori 0 o 1. È utilizzato principalmente per garantire la mutua esclusione nell'accesso a una risorsa critica, assicurando che solo un thread alla volta possa accedervi." 
+                                   FontSize="12" Foreground="#cccccc" LineHeight="18" TextWrapping="Wrap"/>
+                        <TextBlock Text="Uso tipico: Protezione di sezioni critiche, accesso esclusivo a risorse condivise." 
+                                   FontSize="11" Foreground="#999999" FontStyle="Italic"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Semaforo Contatore -->
+                <Border Background="#1a1d28" BorderBrush="#383d4a" BorderThickness="1" CornerRadius="4" Padding="16">
+                    <StackPanel Spacing="12">
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <TextBlock Text="Semaforo Contatore" FontFamily="JetBrains Mono, Courier New" 
+                                       FontSize="13" FontWeight="Bold" Foreground="#eae8e1"/>
+                            <Border Background="#ffb34720" Padding="6,2" CornerRadius="2">
+                                <TextBlock Text="counting" FontFamily="JetBrains Mono, Courier New" 
+                                           FontSize="10" Foreground="#ffb347"/>
+                            </Border>
+                        </StackPanel>
+                        <TextBlock Text="Valori: 0, 1, 2, ..., N" FontFamily="JetBrains Mono, Courier New" 
+                                   FontSize="11" Foreground="#ffb347"/>
+                        <TextBlock Text="Può assumere valori interi non negativi. È utilizzato per controllare l'accesso a un set di risorse limitate, dove il valore del semaforo rappresenta il numero di unità di risorsa attualmente disponibili." 
+                                   FontSize="12" Foreground="#cccccc" LineHeight="18" TextWrapping="Wrap"/>
+                        <TextBlock Text="Uso tipico: Gestione di pool di risorse (es. connessioni DB, thread pool)." 
+                                   FontSize="11" Foreground="#999999" FontStyle="Italic"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <!-- Operations -->
+            <StackPanel Spacing="12">
+                <TextBlock Text="Operazioni Fondamentali" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="16" FontWeight="Bold" Foreground="#eae8e1"/>
+                
+                <TextBlock Text="wait(S) — P(S) [proberen]" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="12" FontWeight="Bold" Foreground="#00ff88"/>
+                <TextBlock Text="Decrementa il valore del semaforo. Se il valore è già 0, il processo viene bloccato (sospeso) fino a quando un altro processo esegue signal()." 
+                           FontSize="12" Foreground="#cccccc" LineHeight="18" TextWrapping="Wrap" Margin="0,0,0,12"/>
+
+                <TextBlock Text="signal(S) — V(S) [verhogen]" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="12" FontWeight="Bold" Foreground="#ffb347"/>
+                <TextBlock Text="Incrementa il valore del semaforo. Se ci sono processi in attesa, uno di essi viene risvegliato e può procedere." 
+                           FontSize="12" Foreground="#cccccc" LineHeight="18" TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <!-- Mutual Exclusion -->
+            <StackPanel Spacing="12">
+                <TextBlock Text="Mutua Esclusione — Critical Section Problem" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="16" FontWeight="Bold" Foreground="#eae8e1"/>
+                
+                <TextBlock Text="La mutua esclusione (mutex) garantisce che solo un processo alla volta acceda a una sezione critica — una porzione di codice che accede a risorse condivise. Senza mutua esclusione, accessi concorrenti possono portare a inconsistenza dei dati." 
+                           FontSize="12" Foreground="#cccccc" LineHeight="18" TextWrapping="Wrap"/>
+
+                <TextBlock Text="Tre Requisiti Fondamentali:" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="12" FontWeight="Bold" Foreground="#eae8e1" Margin="0,12,0,8"/>
+
+                <Border Background="#1a1d28" BorderBrush="#383d4a" BorderThickness="1" CornerRadius="4" Padding="12">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="1. Mutua Esclusione: Se un processo è nella sezione critica, nessun altro processo può entrarvi." 
+                                   FontSize="11" Foreground="#cccccc" LineHeight="16" TextWrapping="Wrap"/>
+                        <TextBlock Text="2. Progresso: Se nessun processo è nella sezione critica, la selezione del prossimo processo non può essere rimandata indefinitamente." 
+                                   FontSize="11" Foreground="#cccccc" LineHeight="16" TextWrapping="Wrap"/>
+                        <TextBlock Text="3. Attesa Limitata: Esiste un limite al numero di volte che altri processi possono entrare nella sezione critica dopo che un processo ha fatto richiesta." 
+                                   FontSize="11" Foreground="#cccccc" LineHeight="16" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

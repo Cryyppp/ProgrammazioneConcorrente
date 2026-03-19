@@ -1,0 +1,149 @@
+<UserControl x:Class="ConcurrentProgrammingApp.Views.RischiView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             Background="#0d0f1a"
+             Foreground="#eae8e1">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical" Spacing="24" Padding="0,0,0,24">
+            <!-- Header -->
+            <StackPanel>
+                <TextBlock Text="CAPITOLO 5" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="11" Foreground="#ff5555" FontWeight="Bold" LetterSpacing="1" Margin="0,0,0,8"/>
+                <TextBlock Text="Rischi &amp; Patologie" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="28" FontWeight="Bold" Foreground="#eae8e1"/>
+                <TextBlock Text="Deadlock, race conditions, starvation" 
+                           FontSize="13" Foreground="#cccccc" Margin="0,8,0,0"/>
+            </StackPanel>
+
+            <!-- Race Conditions -->
+            <StackPanel Spacing="12">
+                <TextBlock Text="Race Conditions" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="16" FontWeight="Bold" Foreground="#eae8e1"/>
+                
+                <Border Background="#1a1d28" BorderBrush="#ffb347" BorderThickness="0,0,0,3" Padding="16">
+                    <TextBlock Text="Una race condition si verifica quando il risultato di un programma dipende dall'ordine di esecuzione dei thread. Accessi concorrenti non protetti a memoria condivisa causano corruzione dei dati." 
+                               FontSize="12" Foreground="#cccccc" LineHeight="18" TextWrapping="Wrap"/>
+                </Border>
+
+                <TextBlock Text="Cause:" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="12" FontWeight="Bold" Foreground="#eae8e1" Margin="0,8,0,4"/>
+                <Border Background="#1a1d28" BorderBrush="#383d4a" BorderThickness="1" CornerRadius="4" Padding="12">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="• Accesso non sincronizzato a variabili condivise" FontSize="11" Foreground="#cccccc"/>
+                        <TextBlock Text="• Operazioni non atomiche (lettura + scrittura)" FontSize="11" Foreground="#cccccc"/>
+                        <TextBlock Text="• Assenza di mutex o semafori" FontSize="11" Foreground="#cccccc"/>
+                        <TextBlock Text="• Timing dipendente dall'OS e dall'hardware" FontSize="11" Foreground="#cccccc"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <!-- Deadlock -->
+            <StackPanel Spacing="12">
+                <TextBlock Text="Deadlock (Stallo)" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="16" FontWeight="Bold" Foreground="#eae8e1"/>
+                
+                <Border Background="#1a1d28" BorderBrush="#ff5555" BorderThickness="0,0,0,3" Padding="16">
+                    <TextBlock Text="Un deadlock è una situazione in cui due o più processi rimangono bloccati indefinitamente, ciascuno in attesa di una risorsa detenuta da un altro. Il sistema si ferma completamente." 
+                               FontSize="12" Foreground="#cccccc" LineHeight="18" TextWrapping="Wrap"/>
+                </Border>
+
+                <TextBlock Text="Quattro Condizioni Necessarie:" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="12" FontWeight="Bold" Foreground="#eae8e1" Margin="0,8,0,4"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.ColumnSpacing>8</Grid.ColumnSpacing>
+
+                    <Border Grid.Column="0" Background="#1a1d28" BorderBrush="#383d4a" BorderThickness="1" CornerRadius="4" Padding="12">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="1. Mutua Esclusione" FontFamily="JetBrains Mono, Courier New" 
+                                       FontSize="11" FontWeight="Bold" Foreground="#00ff88"/>
+                            <TextBlock Text="Le risorse non possono essere condivise." 
+                                       FontSize="10" Foreground="#cccccc" LineHeight="14" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="1" Background="#1a1d28" BorderBrush="#383d4a" BorderThickness="1" CornerRadius="4" Padding="12">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="2. Hold and Wait" FontFamily="JetBrains Mono, Courier New" 
+                                       FontSize="11" FontWeight="Bold" Foreground="#00ff88"/>
+                            <TextBlock Text="I processi mantengono risorse mentre attendono altre." 
+                                       FontSize="10" Foreground="#cccccc" LineHeight="14" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.ColumnSpacing>8</Grid.ColumnSpacing>
+
+                    <Border Grid.Column="0" Background="#1a1d28" BorderBrush="#383d4a" BorderThickness="1" CornerRadius="4" Padding="12">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="3. No Preemption" FontFamily="JetBrains Mono, Courier New" 
+                                       FontSize="11" FontWeight="Bold" Foreground="#00ff88"/>
+                            <TextBlock Text="Le risorse non possono essere tolte ai processi." 
+                                       FontSize="10" Foreground="#cccccc" LineHeight="14" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="1" Background="#1a1d28" BorderBrush="#383d4a" BorderThickness="1" CornerRadius="4" Padding="12">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="4. Circular Wait" FontFamily="JetBrains Mono, Courier New" 
+                                       FontSize="11" FontWeight="Bold" Forecolor="#00ff88"/>
+                            <TextBlock Text="Catena circolare di processi in attesa." 
+                                       FontSize="10" Foreground="#cccccc" LineHeight="14" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </StackPanel>
+
+            <!-- Starvation -->
+            <StackPanel Spacing="12">
+                <TextBlock Text="Starvation (Inedia)" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="16" FontWeight="Bold" Foreground="#eae8e1"/>
+                
+                <Border Background="#1a1d28" BorderBrush="#cc99ff" BorderThickness="0,0,0,3" Padding="16">
+                    <TextBlock Text="Un processo rimane indefinitamente in attesa di una risorsa perché altri processi hanno sempre priorità. A differenza del deadlock, il sistema continua a funzionare, ma alcuni processi non progrediscono mai." 
+                               FontSize="12" Foreground="#cccccc" LineHeight="18" TextWrapping="Wrap"/>
+                </Border>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.ColumnSpacing>12</Grid.ColumnSpacing>
+
+                    <Border Grid.Column="0" Background="#1a1d28" BorderBrush="#383d4a" BorderThickness="1" CornerRadius="4" Padding="12">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Cause" FontFamily="JetBrains Mono, Courier New" 
+                                       FontSize="11" FontWeight="Bold" Foreground="#00ff88"/>
+                            <TextBlock Text="• Priorità non equa" FontSize="10" Foreground="#cccccc"/>
+                            <TextBlock Text="• Problema Lettori-Scrittori" FontSize="10" Foreground="#cccccc"/>
+                            <TextBlock Text="• Scheduling non preemptive" FontSize="10" Foreground="#cccccc"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="1" Background="#1a1d28" BorderBrush="#383d4a" BorderThickness="1" CornerRadius="4" Padding="12">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Soluzioni" FontFamily="JetBrains Mono, Courier New" 
+                                       FontSize="11" FontWeight="Bold" Foreground="#00ff88"/>
+                            <TextBlock Text="• Scheduling equo (round-robin)" FontSize="10" Foreground="#cccccc"/>
+                            <TextBlock Text="• Aging: aumentare priorità nel tempo" FontSize="10" Foreground="#cccccc"/>
+                            <TextBlock Text="• FIFO per l'accesso alle risorse" FontSize="10" Foreground="#cccccc"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

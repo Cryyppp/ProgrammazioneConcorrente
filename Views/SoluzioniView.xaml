@@ -1,0 +1,110 @@
+<UserControl x:Class="ConcurrentProgrammingApp.Views.SoluzioniView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             Background="#0d0f1a"
+             Foreground="#eae8e1">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical" Spacing="24" Padding="0,0,0,24">
+            <!-- Header -->
+            <StackPanel>
+                <TextBlock Text="CAPITOLO 4" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="11" Foreground="#cc99ff" FontWeight="Bold" LetterSpacing="1" Margin="0,0,0,8"/>
+                <TextBlock Text="Soluzioni di Sincronizzazione" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="28" FontWeight="Bold" Foreground="#eae8e1"/>
+                <TextBlock Text="Monitor, variabili di condizione, best practices" 
+                           FontSize="13" Foreground="#cccccc" Margin="0,8,0,0"/>
+            </StackPanel>
+
+            <!-- Monitor -->
+            <StackPanel Spacing="12">
+                <TextBlock Text="Monitor" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="16" FontWeight="Bold" Foreground="#eae8e1"/>
+                
+                <Border Background="#1a1d28" BorderBrush="#cc99ff" BorderThickness="0,0,0,3" Padding="16">
+                    <TextBlock Text="Un monitor è un costrutto di alto livello che incapsula dati condivisi e le procedure che vi accedono, garantendo automaticamente la mutua esclusione. Solo un processo alla volta può essere attivo all'interno del monitor." 
+                               FontSize="12" Foreground="#cccccc" LineHeight="18" TextWrapping="Wrap"/>
+                </Border>
+
+                <TextBlock Text="Componenti di un Monitor:" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="12" FontWeight="Bold" Foreground="#eae8e1" Margin="0,8,0,4"/>
+
+                <Border Background="#1a1d28" BorderBrush="#383d4a" BorderThickness="1" CornerRadius="4" Padding="12">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="• Variabili di stato condivise" FontSize="11" Foreground="#cccccc"/>
+                        <TextBlock Text="• Procedure/metodi sincronizzati" FontSize="11" Foreground="#cccccc"/>
+                        <TextBlock Text="• Variabili di condizione (condition variables)" FontSize="11" Foreground="#cccccc"/>
+                        <TextBlock Text="• Coda di ingresso (entry queue)" FontSize="11" Foreground="#cccccc"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <!-- Condition Variables -->
+            <StackPanel Spacing="12">
+                <TextBlock Text="Variabili di Condizione" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="16" FontWeight="Bold" Foreground="#eae8e1"/>
+                
+                <TextBlock Text="Le variabili di condizione permettono ai thread di sospendersi all'interno di un monitor e di essere risvegliati quando una condizione diventa vera." 
+                           FontSize="12" Foreground="#cccccc" LineHeight="18" TextWrapping="Wrap" Margin="0,0,0,12"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.ColumnSpacing>12</Grid.ColumnSpacing>
+
+                    <Border Grid.Column="0" Background="#1a1d28" BorderBrush="#383d4a" BorderThickness="1" CornerRadius="4" Padding="12">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="wait(cond)" FontFamily="JetBrains Mono, Courier New" 
+                                       FontSize="11" FontWeight="Bold" Foreground="#00ff88"/>
+                            <TextBlock Text="Sospende il thread e rilascia il lock. Viene inserito in una coda di attesa." 
+                                       FontSize="10" Foreground="#cccccc" LineHeight="14" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="1" Background="#1a1d28" BorderBrush="#383d4a" BorderThickness="1" CornerRadius="4" Padding="12">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="signal(cond)" FontFamily="JetBrains Mono, Courier New" 
+                                       FontSize="11" FontWeight="Bold" Foreground="#ffb347"/>
+                            <TextBlock Text="Risveglia uno dei thread in attesa. Se nessuno è in attesa, il segnale viene perso." 
+                                       FontSize="10" Foreground="#cccccc" LineHeight="14" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </StackPanel>
+
+            <!-- Best Practices -->
+            <StackPanel Spacing="12">
+                <TextBlock Text="Best Practices" FontFamily="JetBrains Mono, Courier New" 
+                           FontSize="16" FontWeight="Bold" Foreground="#eae8e1"/>
+                
+                <Border Background="#1a1d28" BorderBrush="#383d4a" BorderThickness="1" CornerRadius="4" Padding="12">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="1. Usare sempre while con wait()" FontFamily="JetBrains Mono, Courier New" 
+                                   FontSize="11" FontWeight="Bold" Foreground="#00ff88"/>
+                        <TextBlock Text="I risvegliati spurii sono possibili. Il while garantisce che la condizione venga riverificata." 
+                                   FontSize="10" Foreground="#cccccc" LineHeight="14" TextWrapping="Wrap" Margin="0,0,0,8"/>
+                        
+                        <TextBlock Text="2. Minimizzare la sezione critica" FontFamily="JetBrains Mono, Courier New" 
+                                   FontSize="11" FontWeight="Bold" Foreground="#00ff88"/>
+                        <TextBlock Text="Tenere il codice all'interno del lock al minimo indispensabile." 
+                                   FontSize="10" Foreground="#cccccc" LineHeight="14" TextWrapping="Wrap" Margin="0,0,0,8"/>
+                        
+                        <TextBlock Text="3. Ordine consistente nell'acquisizione dei lock" FontFamily="JetBrains Mono, Courier New" 
+                                   FontSize="11" FontWeight="Bold" Foreground="#00ff88"/>
+                        <TextBlock Text="Acquisire sempre i lock nello stesso ordine per prevenire il deadlock." 
+                                   FontSize="10" Foreground="#cccccc" LineHeight="14" TextWrapping="Wrap" Margin="0,0,0,8"/>
+                        
+                        <TextBlock Text="4. Rilasciare sempre i lock" FontFamily="JetBrains Mono, Courier New" 
+                                   FontSize="11" FontWeight="Bold" Foreground="#00ff88"/>
+                        <TextBlock Text="Usare pattern RAII o try-finally per garantire il rilascio anche in caso di eccezioni." 
+                                   FontSize="10" Foreground="#cccccc" LineHeight="14" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
